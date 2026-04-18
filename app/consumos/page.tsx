@@ -12,7 +12,7 @@ async function getPageData() {
 
 export default function Consumos() {
   return (
-    <div className="flex flex-col flex-1 h-full dark:bg-black pl-2">
+    <div className="flex flex-col flex-1 h-full bg-gray-200 text-gray-900">
       <main className="p-2">
         SupplyPro v1.0 -{" "}
         {getPageData().then((data) => {

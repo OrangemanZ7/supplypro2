@@ -25,7 +25,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col flex-1 h-full dark:bg-black pl-2">
+    <div className="flex flex-col flex-1 h-full dark:bg-gray-900 pl-2">
       <p className="text-center p-2">SupplyPro v1.0 - Sidebar</p>
       <hr className="w-58 border-t-2 border-gray-500 ml-2"></hr>
       <nav>
@@ -42,7 +42,7 @@ export default function Sidebar() {
                       : "text-blue-100 hover:text-blue-900"
                   }
                 >
-                  - {item.name}
+                  {item.name}
                 </Link>
               </li>
             );

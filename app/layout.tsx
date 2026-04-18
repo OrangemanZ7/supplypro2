@@ -31,7 +31,7 @@ export default function RootLayout({
         <aside className="w-64 h-screen sticky top-0">
           <Sidebar />
         </aside>
-        <main className="flex-1 min-h-full p-4">{children}</main>
+        <main className="flex-1 min-h-full">{children}</main>
       </body>
     </html>
   );
