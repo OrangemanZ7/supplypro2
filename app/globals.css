@@ -57,8 +57,8 @@
   --popover-foreground: oklch(0.147 0.004 49.25);
   --primary: oklch(0.488 0.243 264.376);
   --primary-foreground: oklch(0.97 0.014 254.604);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.985 0.001 106.423);
+  --secondary-foreground: oklch(0.147 0.004 49.25);
   --muted: oklch(0.97 0.001 106.424);
   --muted-foreground: oklch(0.553 0.013 58.071);
   --accent: oklch(0.97 0.001 106.424);
@@ -73,14 +73,15 @@
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
   --radius: 0.45rem;
-  --sidebar: oklch(0.985 0.001 106.423);
-  --sidebar-foreground: oklch(0.147 0.004 49.25);
+  --sidebar: oklch(0.967 0.001 286.375);
+  --sidebar-foreground: oklch(0.21 0.006 285.885);
   --sidebar-primary: oklch(0.546 0.245 262.881);
   --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
   --sidebar-accent: oklch(0.97 0.001 106.424);
   --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --sidebar-border: oklch(0.923 0.003 48.717);
   --sidebar-ring: oklch(0.709 0.01 56.259);
+  --font-vega: "Vega", sans-serif;
 }
 
 .dark {
@@ -115,16 +116,20 @@
   --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.553 0.013 58.071);
+  --font-vega: "Vega", sans-serif;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  root {
+    --font-vega: "Vega", sans-serif;
+  }
   body {
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    font-family: var(--font-vega);
   }
 }

@@ -12,7 +12,7 @@ async function getPageData() {
 
 export default function Escolas() {
   return (
-    <div className="flex flex-col flex-1 h-full bg-gray-200 text-gray-900">
+    <div className="flex flex-col flex-1 h-full">
       <main className="p-2">
         SupplyPro v1.0 -{" "}
         {getPageData().then((data) => {
