@@ -15,20 +15,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br" className={`h-full antialiased`}>
-      <body className="min-h-full flex bg-background text-foreground">
+    /* suppressHydrationWarning é vital aqui para o next-themes não causar erro de script */
+    <html lang="pt-br" suppressHydrationWarning className="h-full">
+      <body className="min-h-full font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <aside className="w-48 h-screen sticky top-0">
-            <Sidebar />
-          </aside>
-          <main className="flex-1 min-h-full bg-background text-foreground">
-            {children}
-          </main>
+          {/* Wrapper flexível para garantir que o layout ocupe a tela toda */}
+          <div className="flex min-h-screen">
+            {/* Sidebar fixa lateralmente */}
+            <aside className="w-48 h-screen sticky top-0 border-r bg-sidebar shrink-0">
+              <Sidebar />
+            </aside>
+
+            {/* Conteúdo principal com scroll natural */}
+            <main className="flex-1 bg-background text-foreground">
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>

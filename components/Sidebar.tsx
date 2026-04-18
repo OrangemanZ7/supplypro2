@@ -1,11 +1,11 @@
 "use client";
-// Dashboard page
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
-import { Button } from "./ui/button";
+import { cn } from "@/lib/utils"; // Importação necessária
+import { buttonVariants } from "@/components/ui/button"; // Importação necessária
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,39 +18,40 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   const navItems = [
-    { name: "Cardápios" as string, href: "/cardapios" as string },
-    { name: "Compras" as string, href: "/compras" as string },
-    { name: "Configuração" as string, href: "/configuracao" as string },
-    { name: "Consumos" as string, href: "/consumos" as string },
-    { name: "Contratos" as string, href: "/contratos" as string },
-    { name: "Dashboard" as string, href: "/dashboard" as string },
-    { name: "Envios" as string, href: "/envios" as string },
-    { name: "Escolas" as string, href: "/escolas" as string },
-    { name: "Estoques" as string, href: "/estoques" as string },
-    { name: "Fornecedoes" as string, href: "/fornecedores" as string },
-    { name: "Locais" as string, href: "/locais" as string },
-    { name: "Pedidos" as string, href: "/pedidos" as string },
-    { name: "Produtos" as string, href: "/produtos" as string },
-    { name: "Usuários" as string, href: "/usuarios" as string },
+    { name: "Cardápios", href: "/cardapios" },
+    { name: "Compras", href: "/compras" },
+    { name: "Configuração", href: "/configuracao" },
+    { name: "Consumos", href: "/consumos" },
+    { name: "Contratos", href: "/contratos" },
+    { name: "Dashboard", href: "/dashboard" },
+    { name: "Envios", href: "/envios" },
+    { name: "Escolas", href: "/escolas" },
+    { name: "Estoques", href: "/estoques" },
+    { name: "Fornecedores", href: "/fornecedores" },
+    { name: "Locais", href: "/locais" },
+    { name: "Pedidos", href: "/pedidos" },
+    { name: "Produtos", href: "/produtos" },
+    { name: "Usuários", href: "/usuarios" },
   ];
 
   return (
     <div className="flex flex-col flex-1 h-full pl-2 bg-sidebar text-sidebar-foreground">
       <p className="text-center p-2">SupplyPro v1.0</p>
-      <hr className="w-42 border-t-2 ml-2"></hr>
-      <nav>
+      <hr className="w-42 border-t-2 ml-2" />
+      <nav className="flex-1 overflow-y-auto">
         <ul className="space-y-2 p-2 ml-2">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
-              <li key={item.name}>
+              <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={
+                  className={cn(
+                    "block py-1 transition-colors",
                     isActive
-                      ? "text-sidebar-primary"
-                      : "text-muted-foreground hover:text-foreground transition-colors"
-                  }
+                      ? "text-sidebar-primary font-semibold"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
                 >
                   {item.name}
                 </Link>
@@ -59,17 +60,20 @@ export default function Sidebar() {
           })}
         </ul>
       </nav>
-      <hr className="w-42 border-t-2 ml-2"></hr>
+      <hr className="w-42 border-t-2 ml-2" />
       <div className="mt-4 p-2 ml-2">
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant="outline" size="icon">
-              <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+          <DropdownMenuTrigger
+            className={cn(
+              buttonVariants({ variant: "outline", size: "icon" }),
+              "relative h-9 w-9",
+            )}
+          >
+            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="start">
             <DropdownMenuItem onClick={() => setTheme("light")}>
               Light
             </DropdownMenuItem>
@@ -86,7 +90,7 @@ export default function Sidebar() {
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} SupplyPro.
         </p>
-        <p className="text-xs"> Todos os direitos reservados.</p>
+        <p className="text-xs">Todos os direitos reservados.</p>
       </div>
     </div>
   );
