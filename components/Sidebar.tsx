@@ -35,9 +35,9 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col flex-1 h-full pl-2">
-      <p className="text-center p-2">SupplyPro v1.0 - Sidebar</p>
-      <hr className="w-58 border-t-2 ml-2"></hr>
+    <div className="flex flex-col flex-1 h-full pl-2 bg-sidebar text-sidebar-foreground">
+      <p className="text-center p-2">SupplyPro v1.0</p>
+      <hr className="w-42 border-t-2 ml-2"></hr>
       <nav>
         <ul className="space-y-2 p-2 ml-2">
           {navItems.map((item) => {
@@ -59,8 +59,8 @@ export default function Sidebar() {
           })}
         </ul>
       </nav>
-      <hr className="w-58 border-t-2 ml-2"></hr>
-      <div className="mt-auto mb-20 p-2 ml-2">
+      <hr className="w-42 border-t-2 ml-2"></hr>
+      <div className="mt-4 p-2 ml-2">
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant="outline" size="icon">
@@ -81,6 +81,12 @@ export default function Sidebar() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+      </div>
+      <div className="mt-auto p-2 ml-2">
+        <p className="text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} SupplyPro.
+        </p>
+        <p className="text-xs"> Todos os direitos reservados.</p>
       </div>
     </div>
   );

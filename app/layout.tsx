@@ -16,14 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br" className={`h-full antialiased`}>
-      <body className="min-h-full flex bg-secondary text-secondary-foreground">
+      <body className="min-h-full flex bg-background text-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <aside className="w-64 h-screen sticky top-0">
+          <aside className="w-48 h-screen sticky top-0">
             <Sidebar />
           </aside>
           <main className="flex-1 min-h-full bg-background text-foreground">
