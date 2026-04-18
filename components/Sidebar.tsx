@@ -25,11 +25,11 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col flex-1 dark:bg-black">
-      <p>SupplyPro v1.0 - Sidebar</p>
-
+    <div className="flex flex-col flex-1 h-full dark:bg-black pl-2">
+      <p className="text-center p-2">SupplyPro v1.0 - Sidebar</p>
+      <hr className="w-58 border-t-2 border-gray-500 ml-2"></hr>
       <nav>
-        <ul className="space-y-2 p-2">
+        <ul className="space-y-2 p-2 ml-2">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -49,6 +49,10 @@ export default function Sidebar() {
           })}
         </ul>
       </nav>
+      <hr className="w-58 border-t-2 border-gray-500 ml-2"></hr>
+      <div className="mt-auto mb-20 p-2 ml-2 text-gray-500">
+        <p>Ricardo (administrator)</p>
+      </div>
     </div>
   );
 }
