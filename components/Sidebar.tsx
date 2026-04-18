@@ -12,26 +12,42 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  LayoutDashboard,
+  Utensils,
+  ShoppingCart,
+  Settings,
+  Zap,
+  FileText,
+  Truck,
+  School,
+  Package,
+  Building2,
+  MapPin,
+  ClipboardList,
+  Tag,
+  Users,
+} from "lucide-react";
 
 export default function Sidebar() {
   const { setTheme } = useTheme();
   const pathname = usePathname();
 
   const navItems = [
-    { name: "Cardápios", href: "/cardapios" },
-    { name: "Compras", href: "/compras" },
-    { name: "Configuração", href: "/configuracao" },
-    { name: "Consumos", href: "/consumos" },
-    { name: "Contratos", href: "/contratos" },
-    { name: "Dashboard", href: "/dashboard" },
-    { name: "Envios", href: "/envios" },
-    { name: "Escolas", href: "/escolas" },
-    { name: "Estoques", href: "/estoques" },
-    { name: "Fornecedores", href: "/fornecedores" },
-    { name: "Locais", href: "/locais" },
-    { name: "Pedidos", href: "/pedidos" },
-    { name: "Produtos", href: "/produtos" },
-    { name: "Usuários", href: "/usuarios" },
+    { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Cardápios", href: "/cardapios", icon: Utensils },
+    { name: "Compras", href: "/compras", icon: ShoppingCart },
+    { name: "Consumos", href: "/consumos", icon: Zap },
+    { name: "Contratos", href: "/contratos", icon: FileText },
+    { name: "Envios", href: "/envios", icon: Truck },
+    { name: "Escolas", href: "/escolas", icon: School },
+    { name: "Estoques", href: "/estoques", icon: Package },
+    { name: "Fornecedores", href: "/fornecedores", icon: Building2 },
+    { name: "Locais", href: "/locais", icon: MapPin },
+    { name: "Pedidos", href: "/pedidos", icon: ClipboardList },
+    { name: "Produtos", href: "/produtos", icon: Tag },
+    { name: "Usuários", href: "/usuarios", icon: Users },
+    { name: "Configuração", href: "/configuracao", icon: Settings },
   ];
 
   return (
@@ -39,21 +55,23 @@ export default function Sidebar() {
       <p className="text-center p-2">SupplyPro v1.0</p>
       <hr className="w-42 border-t-2 ml-2" />
       <nav className="flex-1 overflow-y-auto">
-        <ul className="space-y-2 p-2 ml-2">
+        <ul className="p-2 ml-2">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
+            const Icon = item.icon;
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   className={cn(
-                    "block py-1 transition-colors",
+                    "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
                     isActive
-                      ? "text-sidebar-primary font-semibold"
-                      : "text-muted-foreground hover:text-foreground",
+                      ? "bg-sidebar-accent text-sidebar-primary font-medium"
+                      : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-foreground",
                   )}
                 >
-                  {item.name}
+                  <Icon className="h-4 w-4" /> {/* Renderiza o ícone aqui */}
+                  <span>{item.name}</span>
                 </Link>
               </li>
             );
