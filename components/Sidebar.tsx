@@ -137,7 +137,7 @@ export default function Sidebar() {
 <div
   className={cn(
     "flex flex-col h-full bg-sidebar text-sidebar-foreground border-r transition-all duration-300",
-    "w-[60px] md:w-64", // 60px no mobile (apenas ícone), 256px no desktop
+    "w-15 md:w-64", // 60px no mobile (apenas ícone), 256px no desktop
   )}
 >
   {/* ... restante do código ... */}
