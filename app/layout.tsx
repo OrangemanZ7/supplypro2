@@ -27,7 +27,7 @@ export default function RootLayout({
           {/* Wrapper flexível para garantir que o layout ocupe a tela toda */}
           <div className="flex min-h-screen">
             {/* Sidebar fixa lateralmente */}
-            <aside className="w-48 h-screen sticky top-0 border-r bg-sidebar shrink-0">
+            <aside className="w-16 md:w-64 h-screen sticky top-0 border-r bg-sidebar shrink-0 transition-all duration-300 gap-2">
               <Sidebar />
             </aside>
 
