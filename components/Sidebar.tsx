@@ -53,16 +53,16 @@ export default function Sidebar() {
   ];
 
   return (
-    // Ajustado para encolher a largura em telas pequenas (w-16) e expandir em telas médias (w-64)
     <div className="flex flex-col flex-1 h-full bg-sidebar text-sidebar-foreground transition-all w-16 md:w-64 border-r">
-      <Link
-        href="/"
-        className="flex items-center justify-center md:justify-start gap-2 rounded-md px-4 md:px-7 py-4 text-sm transition-colors"
-      >
-        <Home className="h-5 w-5" />
-        {/* Escondido no mobile, visível no desktop */}
-        <span className="hidden md:inline font-bold">SupplyPro v1.0</span>
-      </Link>
+      <div className="flex flex-col items-center md:items-stretch px-2">
+        <Link
+          href="/"
+          className="flex items-center justify-center md:justify-start gap-3 rounded-md transition-colors h-10 w-10 md:h-auto md:w-full md:px-3 md:py-2"
+        >
+          <Home className="h-5 w-5" />
+          <span className="hidden md:inline font-bold">SupplyPro v1.0</span>
+        </Link>
+      </div>
 
       <hr className="mx-2 border-t-2" />
 
@@ -77,7 +77,6 @@ export default function Sidebar() {
                   href={item.href}
                   title={item.name} // Tooltip nativo para mobile
                   className={cn(
-                    // h-10 e w-10 no mobile cria um círculo/quadrado perfeito para o ícone
                     "flex items-center justify-center md:justify-start gap-3 rounded-md transition-colors",
                     "h-10 w-10 md:h-auto md:w-full md:px-3 md:py-2",
                     isActive
