@@ -1,3 +1,5 @@
+// Produtos API route
+
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../../lib/dbConnect";
 import mongoose from "mongoose";
