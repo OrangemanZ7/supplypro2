@@ -165,9 +165,9 @@ export default function Produtos() {
                 <TableHead>Nome</TableHead>
                 <TableHead>Preço</TableHead>
                 <TableHead>Marca</TableHead>
-                <TableHead>UM</TableHead>
                 <TableHead>Fornecedor</TableHead>
                 <TableHead>Estoque</TableHead>
+                <TableHead>UM</TableHead>
                 <TableHead>Ações</TableHead>
               </TableRow>
             </TableHeader>
@@ -180,9 +180,9 @@ export default function Produtos() {
                   <TableCell>{produto.nome}</TableCell>
                   <TableCell>R$ {produto.preco.toFixed(2)}</TableCell>
                   <TableCell>{produto.marca}</TableCell>
-                  <TableCell>{produto.unidadeMedida}</TableCell>
                   <TableCell>{produto.fornecedor}</TableCell>
                   <TableCell>{produto.estoque}</TableCell>
+                  <TableCell>{produto.unidadeMedida}</TableCell>
                   <TableCell>
                     <Button
                       variant="outline"
