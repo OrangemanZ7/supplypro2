@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -20,7 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Edit, Trash, Plus } from "lucide-react";
+import { Edit, Trash, Plus, MapPin } from "lucide-react";
 
 interface Escola {
   _id: string;
@@ -51,6 +52,9 @@ export default function Escolas() {
     localizacaoGPS: "",
     cnpj: "",
     responsavel: "",
+    alunos: 0,
+    professores: 0,
+    funcionarios: 0,
   });
 
   useEffect(() => {
@@ -79,6 +83,9 @@ export default function Escolas() {
       localizacaoGPS: "",
       cnpj: "",
       responsavel: "",
+      alunos: 0,
+      professores: 0,
+      funcionarios: 0,
     });
     setIsModalOpen(true);
   };
@@ -95,6 +102,9 @@ export default function Escolas() {
         localizacaoGPS: escola.localizacaoGPS || "",
         cnpj: escola.cnpj || "",
         responsavel: escola.responsavel || "",
+        alunos: escola.alunos || 0,
+        professores: escola.professores || 0,
+        funcionarios: escola.funcionarios || 0,
       });
       setIsModalOpen(true);
     }
@@ -152,11 +162,11 @@ export default function Escolas() {
   return (
     <div className="flex flex-col flex-1 h-full">
       <main className="p-2">
-        <h1 className="text-3xl font-bold tracking-tight">Fornecedores</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Escolas</h1>
         <div className="flex justify-end mb-4">
           <Button onClick={handleCreate}>
             <Plus className="mr-2 h-4 w-4" />
-            Criar Novo Fornecedor
+            Criar Nova Escola
           </Button>
         </div>
         <div className="border rounded-lg p-4">
@@ -195,6 +205,16 @@ export default function Escolas() {
                       className="ml-2"
                     >
                       <Trash className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        window.open(escola.localizacaoGPS, "_blank");
+                      }}
+                      className="ml-2"
+                    >
+                      <MapPin className="h-4 w-4" />
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -252,7 +272,6 @@ export default function Escolas() {
                   onChange={(e) =>
                     setFormData({ ...formData, endereco: e.target.value })
                   }
-                  required
                 />
               </div>
               <div>
@@ -273,7 +292,6 @@ export default function Escolas() {
                   onChange={(e) =>
                     setFormData({ ...formData, cnpj: e.target.value })
                   }
-                  required
                 />
               </div>
               <div>
@@ -283,6 +301,48 @@ export default function Escolas() {
                   value={formData.responsavel}
                   onChange={(e) =>
                     setFormData({ ...formData, responsavel: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <Label htmlFor="alunos">Alunos</Label>
+                <Input
+                  id="alunos"
+                  type="number"
+                  value={formData.alunos}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      alunos: parseInt(e.target.value) || 0,
+                    })
+                  }
+                />
+              </div>
+              <div>
+                <Label htmlFor="professores">Professores</Label>
+                <Input
+                  id="professores"
+                  type="number"
+                  value={formData.professores}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      professores: parseInt(e.target.value) || 0,
+                    })
+                  }
+                />
+              </div>
+              <div>
+                <Label htmlFor="funcionarios">Funcionários</Label>
+                <Input
+                  id="funcionarios"
+                  type="number"
+                  value={formData.funcionarios}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      funcionarios: parseInt(e.target.value) || 0,
+                    })
                   }
                 />
               </div>

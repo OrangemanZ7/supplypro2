@@ -5,7 +5,7 @@ const EscolaSchema = new mongoose.Schema(
   {
     nome: { type: String, required: true },
     celular: { type: String, required: true },
-    email: { type: String, required: false, unique: true },
+    email: { type: String, required: true, unique: true },
     endereco: { type: String, required: false },
     localizacaoGPS: { type: String, required: false },
     cnpj: { type: String, required: false, unique: true },
