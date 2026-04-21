@@ -1,0 +1,37 @@
+// app folder structure
+
++---app
+�   +---api (route.ts files)
+�   �   +---cardapios
+�   �   +---compras
+�   �   +---configuracao
+�   �   +---consumos
+�   �   +---contratos
+�   �   +---dashboard
+�   �   +---envios
+�   �   +---escolas
+�   �   +---estoques
+�   �   +---fornecedores
+�   �   +---locais
+�   �   +---pedidos
+�   �   +---produtos
+�   �   +---usuarios
+�   +---cardapios
+�   +---compras
+�   +---configuracao
+�   +---consumos
+�   +---contratos
+�   +---dashboard
+�   +---envios
+�   +---escolas
+�   +---estoques
+�   +---fornecedores
+�   +---locais
+�   +---pedidos
+�   +---produtos
+�   +---usuarios
++---components
+�   +---ui
++---lib
++---models
++---public
