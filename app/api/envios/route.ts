@@ -1,3 +1,5 @@
+// Envios API route
+
 import { NextResponse } from "next/server";
 
 // Handle GET requests to /api/envios
