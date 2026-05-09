@@ -1,4 +1,4 @@
-// Usuario Card component
+// This component is a reusable card component that can be used to display user information in the application. It takes in a user object as a prop and renders a card with the user's name, email, and creation date. It also includes buttons for editing and deleting the user, which call the provided onEdit and onDelete functions when clicked.
 
 "use client";
 

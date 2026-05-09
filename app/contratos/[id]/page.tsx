@@ -1,3 +1,5 @@
+// Contrato detalhes page in app/contratos/[id]/page.tsx
+
 import { notFound } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

@@ -1,4 +1,5 @@
-// Usuarios page
+// Usuários page in app/usuarios/page.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";

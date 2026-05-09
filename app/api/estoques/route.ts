@@ -1,3 +1,5 @@
+// API route for /api/estoques
+
 import { NextResponse } from "next/server";
 
 // Handle GET requests to /api/estoques

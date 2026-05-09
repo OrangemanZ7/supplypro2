@@ -1,3 +1,5 @@
+// This component is a wrapper around the @base-ui/react/menu component, which provides a dropdown menu with a consistent API and styling. It also adds some additional features, such as support for submenus and keyboard navigation.
+
 "use client";
 
 import * as React from "react";

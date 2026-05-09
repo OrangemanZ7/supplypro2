@@ -1,4 +1,5 @@
-// Produtos page
+// Produtos page in app/produtos/page.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";

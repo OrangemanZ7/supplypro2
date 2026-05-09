@@ -1,4 +1,4 @@
-// Modal para selecionar ou criar um produto
+// ProductModal component in app/contratos/novo/ProductModal.tsx
 
 "use client";
 

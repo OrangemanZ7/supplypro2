@@ -1,3 +1,5 @@
+// Root layout in app/layout.tsx
+
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";

@@ -1,0 +1,418 @@
+// API route for /api/cardapios
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/cardapios
+export async function GET() {
+  return NextResponse.json({ pageName: "Cardápios GET", status: "success" });
+}
+// API route for /api/compras
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/compras
+export async function GET() {
+  return NextResponse.json({ pageName: "Compras GET", status: "success" });
+}
+// API route for /api/configuracao
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/configuracao
+export async function GET() {
+  return NextResponse.json({ pageName: "Configuração GET", status: "success" });
+}
+// API route for /api/consumos
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/consumos
+export async function GET() {
+  return NextResponse.json({ pageName: "Consumos GET", status: "success" });
+}
+// API route for /api/contratos
+
+import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "@/lib/dbConnect";
+import Contrato from "@/models/Contrato";
+import Fornecedor from "@/models/Fornecedor";
+import Produto from "@/models/Produto";
+
+export async function GET() {
+  await dbConnect();
+
+  const contratos = await Contrato.find()
+    .populate("fornecedor")
+    .populate("produtos.produto")
+    .sort({ createdAt: -1 });
+
+  return NextResponse.json(contratos);
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    await dbConnect();
+    const body = await req.json();
+
+    const { fornecedorId, ano, dataInicio, dataFim, observacoes, produtos } =
+      body;
+
+    if (!fornecedorId || !ano || !dataInicio || !dataFim || !produtos?.length) {
+      return NextResponse.json(
+        { message: "Dados incompletos para criação de contrato." },
+        { status: 400 },
+      );
+    }
+
+    const contrato = await Contrato.create({
+      fornecedor: fornecedorId,
+      ano,
+      dataInicio,
+      dataFim,
+      observacoes,
+      produtos: produtos.map((p: any) => ({
+        produto: p.produtoId,
+        unidade: p.unidade,
+        precoUnitario: p.precoUnitario,
+        quantidadeMaxima: p.quantidadeMaxima,
+        quantidadeUtilizada: 0,
+      })),
+    });
+
+    await Fornecedor.findByIdAndUpdate(fornecedorId, {
+      $addToSet: { contratos: contrato._id },
+    });
+
+    const produtoIds = produtos.map((p: any) => p.produtoId);
+    await Produto.updateMany(
+      { _id: { $in: produtoIds } },
+      { $addToSet: { fornecedores: fornecedorId } },
+    );
+
+    return NextResponse.json(contrato, { status: 201 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Erro ao criar contrato." },
+      { status: 500 },
+    );
+  }
+}
+// API route for /api/compras
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/dashboard
+export async function GET() {
+  return NextResponse.json({ pageName: "Dashboard GET", status: "success" });
+}
+// API route for /api/envios
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/envios
+export async function GET() {
+  return NextResponse.json({ pageName: "Envios GET", status: "success" });
+}
+// API route for /api/escolas
+
+import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "../../../lib/dbConnect";
+import mongoose from "mongoose";
+import Escola from "../../../models/Escola";
+
+const School =
+  mongoose.models.Escola || mongoose.model("Escola", Escola.schema);
+
+// GET: List all Escolas or fetch by ID if query param provided
+export async function GET(request: NextRequest) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (id) {
+      const school = await School.findById(id);
+      if (!school) {
+        return NextResponse.json(
+          { error: "Escola não encontrada" },
+          { status: 404 },
+        );
+      }
+      return NextResponse.json(school);
+    } else {
+      const schools = await School.find({});
+      return NextResponse.json(schools);
+    }
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Falha ao buscar escolas" },
+      { status: 500 },
+    );
+  }
+}
+
+// POST: Create a new escola
+export async function POST(request: NextRequest) {
+  try {
+    await dbConnect();
+    const body = await request.json();
+    const school = new School(body);
+    await school.save();
+    return NextResponse.json(school, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Falha ao criar escola" },
+      { status: 500 },
+    );
+  }
+}
+
+// PUT: Update a Escola by ID
+export async function PUT(request: NextRequest) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    if (!id) {
+      return NextResponse.json({ error: "precisa de um ID" }, { status: 400 });
+    }
+    const body = await request.json();
+    const school = await School.findByIdAndUpdate(id, body, { new: true });
+    if (!school) {
+      return NextResponse.json(
+        { error: "Escola não encontrada" },
+        { status: 404 },
+      );
+    }
+    return NextResponse.json(school);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Falha ao atualizar escola" },
+      { status: 500 },
+    );
+  }
+}
+
+// DELETE: Delete a Escola by ID
+export async function DELETE(request: NextRequest) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    if (!id) {
+      return NextResponse.json({ error: "precisa de um ID" }, { status: 400 });
+    }
+    const school = await School.findByIdAndDelete(id);
+    if (!school) {
+      return NextResponse.json(
+        { error: "Escola não encontrada" },
+        { status: 404 },
+      );
+    }
+    return NextResponse.json({ message: "Escola deleted" });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Falha ao eliminar escola" },
+      { status: 500 },
+    );
+  }
+}
+// API route for /api/estoques
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/estoques
+export async function GET() {
+  return NextResponse.json({ pageName: "Estoques GET", status: "success" });
+}
+// API route for /api/fornecedores
+
+import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "@/lib/dbConnect";
+import Fornecedor from "@/models/Fornecedor";
+
+// GET: List all Fornecedores or fetch by ID if query param provided
+export async function GET(req: NextRequest) {
+  await dbConnect();
+  const { searchParams } = new URL(req.url);
+  const q = searchParams.get("q") || "";
+
+  const fornecedores = await Fornecedor.find({
+    nome: { $regex: q, $options: "i" },
+  }).limit(10);
+
+  return NextResponse.json(fornecedores);
+}
+
+// POST: Create a new fornecedor
+export async function POST(req: NextRequest) {
+  await dbConnect();
+  const body = await req.json();
+  const fornecedor = await Fornecedor.create(body);
+  return NextResponse.json(fornecedor, { status: 201 });
+}
+// API route for /api/locais
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/locais
+export async function GET() {
+  return NextResponse.json({ pageName: "Locais GET", status: "success" });
+}
+// API route for /api/pedidos
+
+import { NextResponse } from "next/server";
+
+// Handle GET requests to /api/pedidos
+export async function GET() {
+  return NextResponse.json({ pageName: "Pedidos GET", status: "success" });
+}
+// API route for /api/produtos
+import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "@/lib/dbConnect";
+import Produto from "@/models/Produto";
+
+// GET /api/produtos?q=alface
+export async function GET(req: NextRequest) {
+  await dbConnect();
+
+  const { searchParams } = new URL(req.url);
+  const q = searchParams.get("q") || "";
+
+  const produtos = await Produto.find({
+    nome: { $regex: q, $options: "i" },
+  })
+    .limit(20)
+    .sort({ nome: 1 });
+
+  return NextResponse.json(produtos);
+}
+
+// POST /api/produtos
+export async function POST(req: NextRequest) {
+  try {
+    await dbConnect();
+    const body = await req.json();
+
+    // validação mínima
+    if (!body.nome || body.nome.trim() === "") {
+      return NextResponse.json(
+        { message: "O nome do produto é obrigatório." },
+        { status: 400 },
+      );
+    }
+
+    const produto = await Produto.create({
+      nome: body.nome,
+      categoria: body.categoria || null,
+      descricao: body.descricao || null,
+    });
+
+    return NextResponse.json(produto, { status: 201 });
+  } catch (error) {
+    console.error("Erro ao criar produto:", error);
+    return NextResponse.json(
+      { message: "Erro ao criar produto." },
+      { status: 500 },
+    );
+  }
+}
+// API route for /api/usuarios
+
+import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "../../../lib/dbConnect";
+import mongoose from "mongoose";
+import Usuario from "../../../models/Usuario";
+
+const User =
+  mongoose.models.Usuario || mongoose.model("Usuario", Usuario.schema);
+
+// GET: List all usuarios or fetch by ID if query param provided
+export async function GET(request: NextRequest) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (id) {
+      const user = await User.findById(id);
+      if (!user) {
+        return NextResponse.json(
+          { error: "Usuário não encontrado" },
+          { status: 404 },
+        );
+      }
+      return NextResponse.json(user);
+    } else {
+      const users = await User.find({});
+      return NextResponse.json(users);
+    }
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch usuarios" },
+      { status: 500 },
+    );
+  }
+}
+
+// POST: Create a new usuario
+export async function POST(request: NextRequest) {
+  try {
+    await dbConnect();
+    const body = await request.json();
+    const user = new User(body);
+    await user.save();
+    return NextResponse.json(user, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to create usuario" },
+      { status: 500 },
+    );
+  }
+}
+
+// PUT: Update a user by ID
+export async function PUT(request: NextRequest) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    if (!id) {
+      return NextResponse.json({ error: "ID required" }, { status: 400 });
+    }
+    const body = await request.json();
+    const user = await User.findByIdAndUpdate(id, body, { new: true });
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+    return NextResponse.json(user);
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to update user" },
+      { status: 500 },
+    );
+  }
+}
+
+// DELETE: Delete a user by ID
+export async function DELETE(request: NextRequest) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    if (!id) {
+      return NextResponse.json({ error: "ID required" }, { status: 400 });
+    }
+    const user = await User.findByIdAndDelete(id);
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+    return NextResponse.json({ message: "User deleted" });
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to delete user" },
+      { status: 500 },
+    );
+  }
+}

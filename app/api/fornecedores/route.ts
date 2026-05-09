@@ -1,4 +1,5 @@
-// Fornecedores API route
+// API route for /api/fornecedores
+
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Fornecedor from "@/models/Fornecedor";

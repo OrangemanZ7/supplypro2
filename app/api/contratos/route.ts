@@ -1,4 +1,4 @@
-// api route para contratos
+// API route for /api/contratos
 
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";

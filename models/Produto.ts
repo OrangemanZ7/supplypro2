@@ -1,4 +1,4 @@
-// Produto MODEL
+// Produto model in /models/Produto.ts
 
 import mongoose, { Schema, model, models } from "mongoose";
 

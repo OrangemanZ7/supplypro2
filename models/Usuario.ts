@@ -1,4 +1,4 @@
-// Usuario MODEL
+// Usuario model in /models/Usuario.ts
 
 import mongoose from "mongoose";
 import { unique } from "next/dist/build/utils";

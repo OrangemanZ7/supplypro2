@@ -1,4 +1,4 @@
-// Usuarios API route
+// API route for /api/usuarios
 
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../../lib/dbConnect";

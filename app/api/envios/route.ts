@@ -1,4 +1,4 @@
-// Envios API route
+// API route for /api/envios
 
 import { NextResponse } from "next/server";
 

@@ -1,4 +1,4 @@
-// Pedido MODEL
+// Pedido model in /models/Pedido.ts
 
 import mongoose from "mongoose";
 

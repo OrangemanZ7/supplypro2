@@ -1,3 +1,5 @@
+// Fornecedor interface in /types/Fornecedor.ts
+
 export interface Fornecedor {
   _id?: string;
   nome: string;

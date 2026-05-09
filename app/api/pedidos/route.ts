@@ -1,4 +1,5 @@
-// Pedidos API route
+// API route for /api/pedidos
+
 import { NextResponse } from "next/server";
 
 // Handle GET requests to /api/pedidos

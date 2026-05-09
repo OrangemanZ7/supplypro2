@@ -1,4 +1,5 @@
-// dbConnet.ts
+// This file is responsible for establishing a connection to the MongoDB database using Mongoose. It uses a cached connection to prevent multiple connections from being created during development, which can lead to performance issues. The connection URI is read from an environment variable, and if it is not defined, an error is thrown. The dbConnect function can be imported and used in other parts of the application to ensure that a connection to the database is established before performing any database operations.
+
 import mongoose from "mongoose";
 
 const MONGODB_URI =

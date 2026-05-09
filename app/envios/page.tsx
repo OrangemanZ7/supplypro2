@@ -1,4 +1,5 @@
-// Envios page
+// Envios page in app/envios/page.tsx
+
 async function getPageData() {
   // Certifique-se de que a rota da API existe em /api/envios/route.ts
   const res = await fetch(`http://localhost:3000/api/envios`, {

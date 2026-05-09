@@ -1,4 +1,5 @@
-// Fornecedor MODEL
+// Fornecedor model in /models/Fornecedor.ts
+
 import mongoose from "mongoose";
 
 const FornecedorSchema = new mongoose.Schema(

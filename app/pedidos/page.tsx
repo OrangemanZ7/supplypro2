@@ -1,4 +1,4 @@
-// Pedidos page
+// Pedidos page in app/pedidos/page.tsx
 
 async function getPageData() {
   // Certifique-se de que a rota da API existe em /api/pedidos/route.ts

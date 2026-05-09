@@ -1,3 +1,5 @@
+// This component is responsible for rendering the sidebar navigation in the application. It includes links to different sections of the app, as well as a theme toggle button. The sidebar is responsive, showing only icons on smaller screens and both icons and text on larger screens. It also highlights the active page based on the current pathname.
+
 "use client";
 
 import Link from "next/link";

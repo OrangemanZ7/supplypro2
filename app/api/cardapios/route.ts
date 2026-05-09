@@ -1,3 +1,5 @@
+// API route for /api/cardapios
+
 import { NextResponse } from "next/server";
 
 // Handle GET requests to /api/cardapios

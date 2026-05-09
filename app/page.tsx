@@ -1,4 +1,5 @@
-// Home page
+// Home page in app/page.tsx
+
 import {
   LayoutDashboard,
   Utensils,

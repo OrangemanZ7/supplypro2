@@ -1,3 +1,5 @@
+// Novo contrato page in app/contratos/novo/page.tsx
+
 "use client";
 
 import { useEffect, useState } from "react";

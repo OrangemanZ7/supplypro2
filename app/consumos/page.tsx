@@ -1,4 +1,5 @@
-// Consumos page
+// Consumos page in app/consumos/page.tsx
+
 async function getPageData() {
   // Certifique-se de que a rota da API existe em /api/consumos/route.ts
   const res = await fetch(`http://localhost:3000/api/consumos`, {

@@ -1,4 +1,5 @@
-// Contratos page
+// Contratos page in app/contratos/page.tsx
+
 "use client";
 
 import { useEffect, useState } from "react";

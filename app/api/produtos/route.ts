@@ -1,5 +1,4 @@
-// Produtos API route
-
+// API route for /api/produtos
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Produto from "@/models/Produto";

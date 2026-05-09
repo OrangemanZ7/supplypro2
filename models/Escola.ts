@@ -1,4 +1,5 @@
-// Escola MODEL
+// Escola model in /models/Escola.ts
+
 import mongoose, { Schema, model, models } from "mongoose";
 
 const EscolaSchema = new Schema(

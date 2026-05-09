@@ -1,4 +1,5 @@
-// Escolas API Route
+// API route for /api/escolas
+
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "../../../lib/dbConnect";
 import mongoose from "mongoose";

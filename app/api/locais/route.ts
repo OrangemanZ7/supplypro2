@@ -1,3 +1,5 @@
+// API route for /api/locais
+
 import { NextResponse } from "next/server";
 
 // Handle GET requests to /api/locais

@@ -1,4 +1,5 @@
-// Escolas page
+// Escolas page in app/escolas/page.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";

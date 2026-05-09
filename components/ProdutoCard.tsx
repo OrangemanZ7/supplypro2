@@ -1,4 +1,4 @@
-// Produto Card component
+// This component is a reusable card component that can be used to display product information in the application. It takes in a product object as a prop and renders a card with the product's name, description, price, and creation date. It also includes buttons for editing and deleting the product, which call the provided onEdit and onDelete functions when clicked.
 
 "use client";
 

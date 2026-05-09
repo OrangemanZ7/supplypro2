@@ -1,4 +1,5 @@
-// Contrato MODEL
+// Contrato model in /models/Contrato.ts
+
 import mongoose, { Schema, model, models } from "mongoose";
 
 const ContratoSchema = new Schema(

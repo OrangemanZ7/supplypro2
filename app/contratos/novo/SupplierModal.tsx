@@ -1,4 +1,5 @@
-// Modal para criar um novo fornecedor
+// SupplierModal component in app/contratos/novo/SupplierModal.tsx
+
 "use client";
 
 import { useState } from "react";

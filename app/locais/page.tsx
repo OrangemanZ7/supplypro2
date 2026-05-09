@@ -1,4 +1,5 @@
-// Locais page
+// Locais page in app/locais/page.tsx
+
 async function getPageData() {
   // Certifique-se de que a rota da API existe em /api/locais/route.ts
   const res = await fetch(`http://localhost:3000/api/locais`, {

@@ -1,3 +1,5 @@
+// This component is a reusable card component that can be used to display navigation options in the application. It takes in a name, href, and icon as props and renders a card with the provided information. The card is clickable and will navigate to the specified href when clicked.
+
 import Link from "next/link";
 import { LucideIcon } from "lucide-react";
 import {
