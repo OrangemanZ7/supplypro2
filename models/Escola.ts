@@ -1,7 +1,7 @@
 // Escola MODEL
-import mongoose from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
-const EscolaSchema = new mongoose.Schema(
+const EscolaSchema = new Schema(
   {
     nome: { type: String, required: true },
     celular: { type: String, required: true },
@@ -13,10 +13,12 @@ const EscolaSchema = new mongoose.Schema(
     alunos: { type: Number, required: false },
     professores: { type: Number, required: false },
     funcionarios: { type: Number, required: false },
+    pedidos: [{ type: Schema.Types.ObjectId, ref: "Pedido" }],
+    consumos: [{ type: Schema.Types.ObjectId, ref: "Consumo" }],
   },
   {
     timestamps: true,
   },
 );
 
-export default mongoose.models.Escola || mongoose.model("Escola", EscolaSchema);
+export default models.Escola || model("Escola", EscolaSchema);

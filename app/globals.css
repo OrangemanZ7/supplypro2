@@ -133,3 +133,7 @@
     font-family: var(--font-vega);
   }
 }
+
+.modal-panel {
+  @apply bg-white text-black rounded p-4 shadow-xl;
+}

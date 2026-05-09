@@ -1,21 +1,21 @@
 // Produto MODEL
 
-import mongoose from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
-const ProdutoSchema = new mongoose.Schema(
+const ProdutoSchema = new Schema(
   {
     nome: { type: String, required: true },
-    preco: { type: Number, required: true },
-    marca: { type: String, required: true },
-    unidadeMedida: { type: String, required: false },
-    fornecedor: { type: String, required: false },
-    estoque: { type: Number, required: false },
-    categoria: { type: String, required: false },
+
+    categoria: { type: String },
+
+    descricao: { type: String },
+
+    // Many-to-many: um produto pode ter vários fornecedores
+    fornecedores: [{ type: Schema.Types.ObjectId, ref: "Fornecedor" }],
   },
   {
-    timestamps: true, // Adiciona createdAt e updatedAt automaticamente
+    timestamps: true,
   },
 );
 
-export default mongoose.models.Produto ||
-  mongoose.model("Produto", ProdutoSchema);
+export default models.Produto || model("Produto", ProdutoSchema);
